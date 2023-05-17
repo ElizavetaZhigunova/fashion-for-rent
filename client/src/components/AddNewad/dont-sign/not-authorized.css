@@ -1,0 +1,18 @@
+.wrapper-nauth {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.container-nauth {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 8%;
+    margin-top: 3%;
+    justify-content: center;
+}
+
+.header-nauth {
+    font-size: 30px;
+}

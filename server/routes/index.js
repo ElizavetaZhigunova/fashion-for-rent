@@ -1,0 +1,1 @@
+export * as authRouter from './auth.routes.js'

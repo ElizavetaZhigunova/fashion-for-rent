@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: 'Raleway', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #F9F9F9;
+}
+
+body::-webkit-scrollbar {
+  width: 15px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #DFDFF4;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #43436D;
+  border-radius: 7px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

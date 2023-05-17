@@ -1,0 +1,34 @@
+.registration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.registration__btn {
+    width: 540px;
+    height: 60px;
+    background: #43436D;
+    border-radius: 15px;
+    font-weight: 500;
+    font-size: 27px;
+    line-height: 20px;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.reg-title {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 0px;
+    color: #969899;
+    margin-top: 5px;
+}
+
+.blue-span {
+    color: #378FC9;
+    cursor: pointer;
+}
+

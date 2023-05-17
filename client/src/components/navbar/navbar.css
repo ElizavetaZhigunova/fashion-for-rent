@@ -1,0 +1,82 @@
+.navbar {
+display: flex;
+width: 100%;
+height: auto;
+}
+
+.navbar__container {
+    display: flex;
+    align-items: center;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 15px rgb(0 0 0 / 25%);
+    justify-content: space-around;
+    width: 100%;
+    flex-direction: row;
+    height: 80px;
+}
+
+.logo {
+    width: 155px;
+}
+
+.content__left {
+    padding-top: 155px;
+}
+
+.header {
+    font-family: 'Zen Dots', cursive;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-right: 100px;
+}
+
+.btn-rent, .btn-login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10em;
+    height: 45px;
+    background: #373434;
+    border-radius: 15px;
+    color: white;  
+    font-weight: 600;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.btn-rent:hover, .btn-login:hover {
+    background: rgb(81, 81, 81);
+}
+
+.loga {
+    text-decoration: none;
+    color: rgb(18, 18, 18);
+}
+
+.loga:active {
+    color: rgb(18, 18, 18);
+}
+
+.loga:hover {
+    color:#ff2f2f;
+}
+
+
+.A:active {
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.A:hover {
+    color: rgb(195, 193, 193);
+}
+
+.A {
+    text-decoration: none;
+    color: aliceblue;
+}
+
+
+text {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
