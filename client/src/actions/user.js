@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios from '../reducers/axios';
 import { setUser } from '../reducers/userReducer';
 
 export const registration = async(name, lastname, phone, email, password, ) => {
     try {
-        const response = await axios.post(`http://localhost:5000/registration`, {
+        const response = await axios.post(`/registration`, {
         name,
         lastname,
         phone,
@@ -19,7 +19,7 @@ export const registration = async(name, lastname, phone, email, password, ) => {
 export const login = (email, password, callback) => {
     return async dispatch => {
        try {
-        const response = await axios.post(`http://localhost:5000/login`, {
+        const response = await axios.post(`/login`, {
         email,
         password
         })
@@ -29,14 +29,13 @@ export const login = (email, password, callback) => {
     } catch (error) {
         alert(error.response.data.message)
     } 
-    }
-    
+    }   
 }
 
 export const auth = () => {
     return async dispatch => {
        try {
-        const response = await axios.get(`http://localhost:5000/auth`, 
+        const response = await axios.get(`/auth`, 
             {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}}
         )
         dispatch(setUser(response.data.user))
@@ -46,15 +45,13 @@ export const auth = () => {
         localStorage.removeItem('token')
     } 
     }
-    
 }
 
 const token = localStorage.getItem("token");
 
 export const updateProfile = async ({id, name, lastname, email, phone}) => {
     try {
-        const response = await axios.patch(
-          `http://localhost:5000/profile/${id}`,
+        const response = await axios.patch(`/profile/${id}`,
           {
             name,
             lastname,
@@ -65,31 +62,12 @@ export const updateProfile = async ({id, name, lastname, email, phone}) => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         console.log(response);
+        console.log(token)
         alert(response.data.message);
       } catch (error) {
-        alert("ошибка в блоке catch", error);
+        alert("ошибка в блоке catch 4", error);
       }
-}
-
-export const updateLastname = async ({id, lastname}) => {
-  try {
-      const response = await axios.patch(
-        `http://localhost:5000/profile/${id}`,
-        {
-          lastname
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log(response);
-      alert(response.data.message);
-    } catch (error) {
-      alert("ошибка в блоке catch", error);
-    }
 }

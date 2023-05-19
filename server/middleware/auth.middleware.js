@@ -12,7 +12,6 @@ export const authMiddleware = (req, res, next) => {
         if (!token) {
             return res.status(401).json({message: "Ошибка авторизации! 1"})
         }
-        console.log(token)
         const decoded = jwt.verify(token, config.get('secretKey'))
         req.user = decoded
         next()

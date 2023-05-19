@@ -334,13 +334,15 @@ margin-right: 10px;
 
 .ad-content-container {
     display: flex;
-    width: 81%;
+    width: 100%;
     margin-bottom: 40px;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .image-db {
     border-radius: 15px;
+    width: 30%;
+    object-fit: contain;
     box-shadow: -1px 2px 16px 0px #3f3f3fad;
 }
 
@@ -414,12 +416,11 @@ margin-right: 10px;
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 400;
+    /* text-align: left; */
     font-size: 25px;
+    display: flex;
     line-height: 20px;
-    /* identical to box height, or 62% */
-    
     letter-spacing: 0.1em;
-    
     color: #000000;
 
 }

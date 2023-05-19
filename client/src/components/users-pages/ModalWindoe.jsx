@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './style.css'
 import { useSelector } from 'react-redux'
 import { updateProfile } from '../../actions/user'
@@ -14,6 +14,12 @@ const ModalWindoe = ({active, setActive, children, closeModalWindow}) => {
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
   
+    useEffect(() => {
+      setName(user.name);
+      setLastname(user.lastname);
+      setEmail(user.email);
+      setPhone(user.phone)
+    }, [])
   
     const handleUpdateName = (e) => {
       e.preventDefault()

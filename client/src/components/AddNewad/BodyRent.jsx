@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "../../reducers/axios";
 import { createAd } from "../../actions/ad";
 
@@ -9,10 +9,6 @@ import Inp from "../Inputs/Inp";
 
 const BodyRent = () => {
   const navigate = useNavigate();
-  let { id } = useParams();
-
-  const [imageUrl, setImageUrl] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
 
   const [name, setName] = useState("");
   const [photo, setPhoto] = useState("");
@@ -24,6 +20,9 @@ const BodyRent = () => {
   const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
   const [text, setText] = useState("")
+
+
+  const [showDiv, setShowDiv] = useState(false);
 
   const inputFileRef = useRef(null);
 
@@ -51,6 +50,9 @@ const BodyRent = () => {
 
   return (
     <>
+    {showDiv && (
+     <div id="message"></div>
+    )}
       <div className="update-wrapper">
         <div className="update-container">
           <div className="title-div">
@@ -204,7 +206,9 @@ const BodyRent = () => {
               city,
               text
             });
-            // navigate('/uploadAdd')
+            console.log('это статус ', e.status)
+            setShowDiv(true)
+            // 
           }}
           className="btn-next"
         >

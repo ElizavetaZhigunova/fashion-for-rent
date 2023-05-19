@@ -1,7 +1,8 @@
-import React, { useState} from 'react'
+import React, { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import './style.css'
 import ModalWindow from './ModalWindoe'
+import axios from "../../reducers/axios";
 
 const UserProfile = () => {
 
@@ -13,12 +14,13 @@ const UserProfile = () => {
     setModalActive(false)
 }
 
+
   return (
     <>
       <span className='user-id'>id: {user.id}</span>
       <div className="photo-profile-container">
         <div className="photo-user-profile">
-          {user.photo}
+          {user.avatar}
         </div>
         <div className="right-side-prof">
           <span className='info-abaout-photo'>Пожалуйста, загрузите фотографию, <br />

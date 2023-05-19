@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Remove from "../img/update/remove.svg";
 import Update from "../img/update/update.svg";
 import { getAdById, updateAd } from "../../actions/ad";
@@ -6,8 +6,9 @@ import { useSelector } from "react-redux";
 import Footer from "../footer/footer";
 import Inp from "../Inputs/Inp";
 import { useNavigate, useParams } from "react-router-dom";
+import axios from "../../reducers/axios";
 
-const UpdateAd = () => {
+const UpdateAd = (status) => {
   const navigate = useNavigate();
   let { id } = useParams();
   const [name, setName] = useState("");
@@ -19,6 +20,8 @@ const UpdateAd = () => {
   const [priceMonth, setPriceMonth] = useState("");
   const [text, setText] = useState("");
   const [authorId, setAuthorId] = useState("");
+
+  console.log("dgfjd", status)
 
   useEffect(() => {
     getAdById(id)
@@ -48,6 +51,7 @@ const UpdateAd = () => {
     e.preventDefault();
     updateAd({
       id,
+      photo,
       name,
       category,
       price,
@@ -58,6 +62,34 @@ const UpdateAd = () => {
       userId,
       authorId,
     });
+    if (status == 200) {
+      navigate(-1)
+    }
+  };
+
+  const inputFileRef = useRef(null);
+
+  const handleChangeFile = async (e) => {
+    try {
+      const token = localStorage.getItem("token");
+      const formData = new FormData();
+      const file = e.target.files[0];
+      formData.append("image", file);
+      const { data } = await axios.post("/upload", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setPhoto(data.url);
+      
+    } catch (error) {
+      console.warn(error);
+      alert("Ошибка при загрузке изображения");
+    }
+  };
+
+  const onClickRemoveImage = () => {
+    setPhoto("");
   };
 
   return (
@@ -82,26 +114,45 @@ const UpdateAd = () => {
             <div className="form-wrapper">
               <div className="photo-block-update">
                 <span className="title-upd-ad">Фотография</span>
-                <div className="photo-upd">ТУт фото</div>
+                <div className="photo-upd">
+                  {photo && (
+                    <>
+                      <img
+                        className="img-updd"
+                        style={{ width: "inherit", height: "inherit" }}
+                        src={`http://localhost:5000${photo}`}
+                        alt=""
+                      />
+                    </>
+                  )}
+                </div>
                 <div className="btn-upd">
                   <div className="update-img">
                     <img src={Update} alt="" />
                     <input
+                      ref={inputFileRef}
+                      onChange={handleChangeFile}
                       type="file"
                       id="update"
                       name="photo"
                       accept="image/*"
                     />
-                    <label htmlFor="update" className="update">
-                      Изменить
-                    </label>
+                    <button
+                    onClick={() => inputFileRef.current.click()}
+                    className="update"
+                    >
+                      Выбрать фото
+                    </button>
                   </div>
                   <div className="update-img">
-                    <img src={Remove} alt="" />
-                    <input type="file" id="remove" />
-                    <label htmlFor="remove" className="remove">
-                      Удалить
-                    </label>
+                  {photo && (
+                    <>
+                      <img src={Remove} alt="" />
+                      <label onClick={onClickRemoveImage} className="remove">
+                        Удалить фото
+                      </label>
+                    </>
+                  )}
                   </div>
                 </div>
               </div>

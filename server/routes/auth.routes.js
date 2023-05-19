@@ -26,13 +26,13 @@ router.post('/registration',
         
         const {name, lastname, phone, email, password,  ad} = req.body
 
-        const candidate = await UserModel.findOne({email})
+        const candidate = await User.findOne({email})
 
         if(candidate) {
             return res.status(400).json({message: `Пользователь с почтой ${email} был создан. Авторизуйтесь, пожалуйста :3`})
         }
         const hashPassword = await bcrypt.hash(password, 7)
-        const user = new UserModel({name, lastname, phone, email, password: hashPassword,  ad})
+        const user = new User({name, lastname, phone, email, password: hashPassword,  ad})
         await user.save()
         return res.json({message: "Пользователь был успешно создан :3"})
 
@@ -79,7 +79,7 @@ router.get('/auth', authMiddleware,
     async (req, res) => {
 
     try {
-        const user = await user.findOne({_id: req.user.id})
+        const user = await User.findOne({_id: req.user.id})
         const token = jwt.sign({id: user._id}, config.get("secretKey"), {expiresIn: "7d"})
         return res.json({
             token,

@@ -1,5 +1,6 @@
 {
     "serverPort": 5000,
+    "dbUrl2": "mongodb://localhost:27017/test",
     "dbUrl": "mongodb+srv://root:lizaanna12@dipl.ffqgx5j.mongodb.net/?retryWrites=true&w=majority",
     "secretKey": "i-love-tavrichka"
 }

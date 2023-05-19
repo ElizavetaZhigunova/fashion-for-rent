@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../reducers/axios";
 import { setItems } from "../reducers/adsReducer";
 
 const token = localStorage.getItem("token");
@@ -11,8 +11,7 @@ export const createAd = async ({
 }) => {
   if (userId === authorId) {
     try {
-      const response = await axios.post(
-        `http://localhost:5000/AddNew`,
+      const response = await axios.post(`/AddNew`,
         {
           token, name, photo, category,
           price, priceDay,
@@ -28,8 +27,10 @@ export const createAd = async ({
           },
         }
       );
+      const messageDiv = document.querySelector('#message');
+      messageDiv.textContent = response.data.message;
       console.log(response);
-      alert(response.data.message);
+      
     } catch (error) {
       alert("ошибка в блоке catch", error);
     }
@@ -41,8 +42,7 @@ export const createAd = async ({
 export const removeAd = (itemId, items) => {
   return async (dispatch, getState) => {
     try {
-      const response = await axios.delete(
-        `http://localhost:5000/AddNew/${itemId}`,
+      const response = await axios.delete(`/AddNew/${itemId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -63,7 +63,7 @@ export const removeAd = (itemId, items) => {
 
 export const getAdById = async (id) => {
   try {
-    const response = await axios.get(`http://localhost:5000/AddNew/${id}`);
+    const response = await axios.get(`/AddNew/${id}`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -82,8 +82,7 @@ export const updateAd = async ({
   text
 }) => {
   try {
-    const response = await axios.patch(
-      `http://localhost:5000/AddNew/${id}`,
+    const response = await axios.patch(`/AddNew/${id}`,
       {
         name,
         photo,
