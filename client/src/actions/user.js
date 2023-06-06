@@ -10,9 +10,16 @@ export const registration = async(name, lastname, phone, email, password, ) => {
         email,
         password
         })
-        alert(response.data.message)
+        if (response.status === 200) {
+          const messageDiv = document.querySelector('#message-reg');
+          messageDiv.textContent = response.data.message;
+        } else {
+          const messageDiv = document.querySelector('#err');
+          messageDiv.textContent = response.data.message;
+        }
     } catch (error) {
-        alert(error.response.data.message)
+      const messageDiv = document.querySelector('#message-reg');
+      messageDiv.textContent = error.response.data.message;
     }
 }
 
@@ -27,7 +34,8 @@ export const login = (email, password, callback) => {
         localStorage.setItem('token', response.data.token)
         callback()
     } catch (error) {
-        alert(error.response.data.message)
+      const messageDiv = document.querySelector('#message-span');
+      messageDiv.textContent = error.response.data.message;
     } 
     }   
 }
@@ -49,10 +57,11 @@ export const auth = () => {
 
 const token = localStorage.getItem("token");
 
-export const updateProfile = async ({id, name, lastname, email, phone}) => {
+export const updateProfile = async ({id, avatar, name, lastname, email, phone}) => {
     try {
         const response = await axios.patch(`/profile/${id}`,
           {
+            avatar,
             name,
             lastname,
             phone,
@@ -70,4 +79,22 @@ export const updateProfile = async ({id, name, lastname, email, phone}) => {
       } catch (error) {
         alert("ошибка в блоке catch 4", error);
       }
+}
+
+export const sendEmail = () => {
+  try {
+    const response = axios.post('/send-email', {
+      recipient: 'lupedu75@gmail.com',
+      subject: 'Test email',
+      text: 'This is a test email!'
+    })
+    .then(function(response) {
+      console.log(response.data);
+    })
+    .catch(function(error) {
+      console.log("тут ошибка...   ",error);
+    });
+  } catch (error) {
+    console.log(error)
+  }
 }

@@ -107,6 +107,11 @@ border-bottom: 1px solid #43436D;
     width: 85%;
 }
 
+.price-block-double {
+    display: flex;
+    justify-content: space-between;
+}
+
 .navigate-back {
     margin-top: 35px;
     margin-bottom: 30px;
@@ -253,6 +258,11 @@ margin-right: 10px;
     color: #FF7058;
     margin-bottom: 20px;
     
+}
+
+.price-blok.s {
+    width: 120px;
+    font-size: 12px;
 }
 
 .feedback {
@@ -677,6 +687,7 @@ margin-bottom: 40px;
 }
 
 .update-container {
+    transition: 1s;
     display: flex;
     width: 76%;
     flex-direction: column;
@@ -851,4 +862,48 @@ margin-bottom: 40px;
     border-radius: 15px;
     width: 229px;
     height: 50px;
+}
+
+#message-upd {
+    margin-top: 35px;
+    color: #43436D !important;
+    font-weight: 700 !important;
+    
+    font-size: 1.3em;
+}
+
+.one {
+    opacity: 0;
+    -webkit-animation: dot 1.3s infinite;
+    -webkit-animation-delay: 0.0s;
+    animation: dot 1.3s infinite;
+    animation-delay: 0.0s;
+}
+
+.two {
+    opacity: 0;
+    -webkit-animation: dot 1.3s infinite;
+    -webkit-animation-delay: 0.2s;
+      animation: dot 1.3s infinite;
+      animation-delay: 0.2s;
+}
+
+.three {
+    opacity: 0;
+    -webkit-animation: dot 1.3s infinite;
+    -webkit-animation-delay: 0.3s;
+     animation: dot 1.3s infinite;
+     animation-delay: 0.3s;
+}
+
+@-webkit-keyframes dot {
+      0% { opacity: 0; }
+     50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes dot {
+      0% { opacity: 0; }
+     50% { opacity: 0; }
+    100% { opacity: 1; }
 }

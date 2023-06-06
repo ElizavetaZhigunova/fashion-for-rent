@@ -27,19 +27,26 @@ export const createAd = async ({
           },
         }
       );
-      const messageDiv = document.querySelector('#message');
-      messageDiv.textContent = response.data.message;
-      console.log(response);
+      console.log(response.data.message)
+
+      if (response.status === 200) {
+        const messageDiv = document.querySelector('#message');
+        messageDiv.textContent = response.data.message;
+      } else {
+        const messageDiv = document.querySelector('#err');
+        messageDiv.textContent = response.data.message;
+      }
       
     } catch (error) {
-      alert("ошибка в блоке catch", error);
+      const messageDiv = document.querySelector('#err');
+        messageDiv.textContent = error;
     }
   } else {
     console.log("Пользователь не является автором объявления");
   }
 };
 
-export const removeAd = (itemId, items) => {
+export const removeAd = ({itemId, items}) => {
   return async (dispatch, getState) => {
     try {
       const response = await axios.delete(`/AddNew/${itemId}`,
@@ -56,12 +63,12 @@ export const removeAd = (itemId, items) => {
         alert(`Произошла ошибка. Код ошибки ${response.status}`);
       }
     } catch (error) {
-      console.log(error);
+      console.log("ошибка    :  ",error);
     }
   };
 };
 
-export const getAdById = async (id) => {
+export const getAdById = async ({id}) => {
   try {
     const response = await axios.get(`/AddNew/${id}`);
     return response.data;
@@ -100,7 +107,13 @@ export const updateAd = async ({
       }
     );
     console.log(response);
-    alert(response.data.message);
+    if (response.status === 200) {
+      const messageDiv = document.querySelector('#message-upd');
+      messageDiv.textContent = response.data.message;
+    } else {
+      const messageDiv = document.querySelector('#err');
+      messageDiv.textContent = response.data.message;
+    }
     
   } catch (error) {
     alert("ошибка в блоке catch", error);

@@ -21,8 +21,6 @@ const UpdateAd = (status) => {
   const [text, setText] = useState("");
   const [authorId, setAuthorId] = useState("");
 
-  console.log("dgfjd", status)
-
   useEffect(() => {
     getAdById(id)
       .then((data) => {
@@ -94,7 +92,9 @@ const UpdateAd = (status) => {
 
   return (
     <div className="update-wrapper">
+      
       <div className="update-container">
+        <div id="message-upd"></div>
         <span
           className="title-updated"
           style={{

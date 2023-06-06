@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Photo from "../img/addNew/closes1.png";
 import { Link } from "react-router-dom";
 import { removeAd } from "../../actions/ad";
 import { useDispatch, useSelector } from "react-redux";
@@ -50,7 +49,7 @@ export const Ad = ({ _id, user, name, priceDay, viewsCount, author, photo, obj }
           className={trashButtonClassName}
           onClick={handleRemoveAd}
         >
-          <img src={Remove} alt="" />
+          <img className="remove" src={Remove} alt="" />
         </button>
         <div className="add-container">
         {photo && (

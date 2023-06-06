@@ -29,7 +29,7 @@ router.post('/registration',
         const candidate = await User.findOne({email})
 
         if(candidate) {
-            return res.status(400).json({message: `Пользователь с почтой ${email} был создан. Авторизуйтесь, пожалуйста :3`})
+            return res.status(400).json({message: `Пользователь с почтой ${email} был создан.`})
         }
         const hashPassword = await bcrypt.hash(password, 7)
         const user = new User({name, lastname, phone, email, password: hashPassword,  ad})

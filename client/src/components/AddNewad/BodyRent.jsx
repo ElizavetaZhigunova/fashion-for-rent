@@ -23,6 +23,7 @@ const BodyRent = () => {
 
 
   const [showDiv, setShowDiv] = useState(false);
+  // const [showErrDiv, setShowErrDiv] = useState(false)
 
   const inputFileRef = useRef(null);
 
@@ -51,7 +52,10 @@ const BodyRent = () => {
   return (
     <>
     {showDiv && (
-     <div id="message"></div>
+     <div id="messages">
+        <div className="title-message">Успех!</div>
+        <div id="message"></div>
+     </div>
     )}
       <div className="update-wrapper">
         <div className="update-container">
@@ -206,7 +210,6 @@ const BodyRent = () => {
               city,
               text
             });
-            console.log('это статус ', e.status)
             setShowDiv(true)
             // 
           }}

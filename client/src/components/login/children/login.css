@@ -1,3 +1,16 @@
+#message-span {
+    font-size: 15px;
+    color: red;
+}
+
+.msg {
+    margin-bottom: 20px;
+    color: #43436D !important;
+    font-weight: 600 !important;
+    text-decoration: underline;
+    
+}
+
 .registration {
     display: flex;
     flex-direction: column;

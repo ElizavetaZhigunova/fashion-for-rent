@@ -8,6 +8,8 @@ const UserProfile = () => {
 
   const user = useSelector(state => state.user.currentUser)
 
+  const [avatar, setAvatar] = useState("");
+
   const [modalActive, setModalActive] = useState(false)
 
   const closeModalWindow = () => {
@@ -28,8 +30,8 @@ const UserProfile = () => {
             Четкие фотографии важны, чтобы члены нашего<br />
             сообщества могли больше доверять друг другу.
           </span>
-          <label className='file-user' htmlFor="file-user">Загрузить фотографию</label>
-          <input type="file" id='file-user' name='image' accept='image/*'/>
+          <label className='file-user' onClick={() => setModalActive(true)}>Загрузить фотографию</label>
+          {/* <input type="file" id='file-user' name='image' accept='image/*'/> */}
         </div>
       </div>
       <div className="user-info-prof">

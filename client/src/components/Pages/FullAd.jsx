@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import Person from "../img/addNew/person.svg";
 import Footer from "../footer/footer";
 import { useNavigate } from "react-router-dom";
+import Loading from "./Loading";
+import { sendEmail } from "../../actions/user";
 
 
 export const FullAd = () => {
@@ -23,6 +25,20 @@ export const FullAd = () => {
   const navigate = useNavigate();
 
   const { id } = useParams();
+  
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      
+      const response = await axios.post('/send-message', { message });
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   
 
   useEffect(() => {
@@ -41,7 +57,7 @@ export const FullAd = () => {
   }, []);
 
   if (!loaded) {
-    return <div>Loading...</div>;
+    return <Loading/>;
   }
 
   // Если данные загружены, но data равно null, то выводим сообщение об ошибке
@@ -84,20 +100,30 @@ export const FullAd = () => {
                   </div>
 
                   <div className="price-blok">{data.priceDay} ₽/день</div>
+                  <div className="price-block-double">
+                    <div className="price-blok s">{data.priceWeek} ₽/неделю</div>
+                    <div className="price-blok s">{data.priceMonth} ₽/месяц</div>
+                  </div>
+                  
 
                   <div className="feedback">
                     <span className="title-feedback">Начало аренды</span>
-                    <textarea
-                      className="textarea"
-                      name=""
-                      id=""
-                      cols="30"
-                      rows="10"
-                      placeholder="Введите даты на которые вы бы хотели забронировать вещь ..."
-                    ></textarea>
-                    <button className="feedback-submit">
-                      Запросить аренду
-                    </button>
+                    <form onSubmit={handleSubmit}>
+                      <textarea
+                        className="textarea"
+                        name=""
+                        id=""
+                        cols="30"
+                        rows="10"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        placeholder="Введите даты на которые вы бы хотели забронировать вещь ..."
+                      ></textarea>
+                      <button type="submit" className="feedback-submit">
+                        Запросить аренду
+                      </button>
+                    </form>
+                    
                   </div>
                 </div>
               </div>
@@ -109,7 +135,13 @@ export const FullAd = () => {
               </div>
               <div className="main-info-text">
                 <span className="info-text">
-                  {data.text}
+                  {data.text} <br />
+                </span>
+                <span className="info-text">
+                  <br /> Город: {' '}
+                  {data.city} <br />
+                  Адрес получения:{' '}
+                  {data.address}
                 </span>
               </div>
             </div>
@@ -120,14 +152,14 @@ export const FullAd = () => {
               </div>
               <div className="right-blok">
                 <div className="nameuser">
-                  <span className="username-second">{data.user}</span>
+                  <span className="username-second">{data.user.name}</span>
                 </div>
-                <button className="write">Написать</button>
+                <button className="write" onClick={() => sendEmail()}>Написать</button>
               </div>
             </div>
 
             <div className="info-ad">
-              <span>Товар id: {data._id} размещен {data.createdAt}</span>
+              <span>Товар id: {data.user._id} размещен {data.createdAt}</span>
               <span>
                 Нужна помощь? Просто свяжитесь с владельцем в чате или свяжитесь
                 со службой поддержки

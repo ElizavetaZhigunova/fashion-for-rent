@@ -5,6 +5,7 @@ import Footer from "../footer/footer";
 import { Ad } from "../AddNewad/Ad";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAds, fetchCategory } from "../../reducers/adsReducer";
+import Loading from "./Loading";
 
 export const AllAds = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ export const AllAds = () => {
   }, [dispatch]);
 
   if (ads.status === 'loading' || category.status === 'loading') {
-    return <div>Loading...</div>
+    return <Loading/>
   }
 
 /*   console.log(ads);
@@ -54,12 +55,6 @@ export const AllAds = () => {
             obj={obj}
           />
         ))}
-
-        {/* {[...Array(20)].map(() => {
-            return (<Ad
-              
-            />)}
-          )} */}
       </div>
       <Footer />
     </div>

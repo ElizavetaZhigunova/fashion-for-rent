@@ -1,10 +1,39 @@
-#message {
+#messages {
   display: flex;
+  padding: 30px;
+  flex-direction: column;
+  width: auto;
+  height: auto;
+  align-items: flex-start;
+  background: #FFFFFF;
   border: 1px solid #43436D;
-  width: 10%;
-  height: 90px;
+  border-radius: 15px;
+  margin-top: 40px;
+
+}
+
+.title-message {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  /* identical to box height */
+  margin-bottom: 15px;
+
+  color: #43436D;
+
+}
+
+#message {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
   font-size: 20px;
-  color: blueviolet;
+  line-height: 24px;
+
+  color: #000000;
+
 }
 
 .container-price{
@@ -349,6 +378,10 @@
   width: inherit;
   height: inherit;
   object-fit: contain;
+}
+
+.remove:hover {
+  stroke: wheat;
 }
 
 .add-container:hover {

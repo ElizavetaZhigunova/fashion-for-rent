@@ -4,7 +4,7 @@ import './login.css';
 import { registration } from '../../../actions/user';
 
 
-const Login = ({closeModalWindow}) => {
+const Login = () => {
     const [name, setName] = useState("")
     const [lastname, setLastname] = useState("")
     const [email, setEmail] = useState("")
@@ -13,6 +13,7 @@ const Login = ({closeModalWindow}) => {
     
     return (
         <div className='registration'>
+           <div id="message-reg" className='msg'></div>
             <div className="form-reg">
                 <Input value={name} setValue={setName} type="text" placeholder="Введите имя"/>
                 <Input value={lastname} setValue={setLastname} type="text" placeholder="Введите фамилию"/>

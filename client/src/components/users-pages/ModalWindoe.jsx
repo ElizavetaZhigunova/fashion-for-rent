@@ -5,7 +5,7 @@ import { updateProfile } from '../../actions/user'
 import { useParams } from 'react-router-dom'
 import Inp from '../Inputs/Inp'
 
-const ModalWindoe = ({active, setActive, children, closeModalWindow}) => {
+const ModalWindoe = ({active, setActive, closeModalWindow}) => {
     
     const user = useSelector(state => state.user.currentUser)
     let { id } = useParams()
@@ -39,7 +39,7 @@ const ModalWindoe = ({active, setActive, children, closeModalWindow}) => {
                 <Inp className="inp-modal" id="inp three" type="text" setValue={setEmail} value={email} />
                 <span className='spn-modal'>Введите номер телефона</span>
                 <Inp className="inp-modal" id="inp fourth" type="text" setValue={setPhone} value={phone} />
-                <button className='file-user' type='submit'>Изменить</button>
+                <button className='file-user' type='submit' onClick={closeModalWindow}>Изменить</button>
             </form>
             </div>
         </div>

@@ -39,7 +39,7 @@ export const getOne = async (req, res) => {
       {
         $inc: { viewsCount: 1 },
       }
-    )
+    ).populate("user")
       .then((doc) => {
         res.json(doc);
       })
@@ -124,14 +124,14 @@ export const update = async (req, res) => {
       }
     )
       .then(() => {
-        res.status(200).send({ message: "Ad updated successfully." });
+        res.status(200).send({ message: "Объявление успешно обновлено." });
       })
       .catch((err) => {
         console.log(err);
-        res.status(500).send({ message: "Error updating ad." });
+        res.status(500).send({ message: "Ошибка редактирования." });
       });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Не удалось обновить объявление" });
+    res.status(500).json({ message: "Не удалось обновить объявление." });
   }
 };
